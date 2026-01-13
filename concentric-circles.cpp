@@ -2,13 +2,13 @@
 
 using namespace std;
 
-int m = -1;
+int m = -1; //глобальные границы массива
 int n = -1;
 
-int c = 0;
-int k = -1;
+int c = 0; // счётчик, который записывает координаты
+int k = -1; // счётчик, который считывает координаты
 
-void check(int* A, int X, int Y, int* M)
+void paint(int* A, int X, int Y, int* M)
 {
     for (int cX = X - 1; cX <= X + 1; cX++)
     {
@@ -27,7 +27,7 @@ void check(int* A, int X, int Y, int* M)
 
     k++;
     if (k <= m * n - 2)
-        check(A, M[k] / (n + 2), M[k] % (n + 2), M);
+        paint(A, M[k] / (n + 2), M[k] % (n + 2), M);
     else
         return;
     
@@ -59,9 +59,9 @@ int main()
     cout << endl;
 
     int x = -1, y = -1;
-    while (x<0 or y<0 or x>n or y>m)
+    while (x<0 or y<0 or x>=n or y>=m)
     {
-        cout << "Enter x, y: ";
+        cout << "Enter x, y: "; // нумерация с нуля
         cin >> x >> y;
     }
     x++;
@@ -74,7 +74,7 @@ int main()
         M[c] = -1;
     c = 0;
 
-    check(A, x, y, M);
+    paint(A, x, y, M);
 
     cout << endl;
     for (int i = 1; i < m + 1; i++)
